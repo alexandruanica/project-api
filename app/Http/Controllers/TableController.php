@@ -32,7 +32,9 @@ class TableController extends Controller
         for($i = 0; $i < count($brands); $i++)
             array_push($brandData,
             TableController::getBrandData($brands[$i]->brandname));
-        dd($brandData);
+
+
+        return view('tabel')->with('brandData',$brandData);
     }
 
     function getBrandData($name) {
