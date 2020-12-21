@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class TableController extends Controller
 {
@@ -28,13 +29,18 @@ class TableController extends Controller
         curl_close($ch);
         $result = json_decode($result);
         $brands = $result->result;
-        $brandData = [];
-        for($i = 0; $i < count($brands); $i++)
-            array_push($brandData,
-            TableController::getBrandData($brands[$i]->brandname));
+        return $brands;
+//        $brandData = [];
+//        for($i = 0; $i < count($brands); $i++)
+//            array_push($brandData,
+//            TableController::getBrandData($brands[$i]->brandname));
+//
+//
+//        return $brandData;
+    }
 
-
-        return view('tabel')->with('brandData',$brandData);
+    public function getBrandDataAux($name) {
+        return TableController::getBrandData($name);
     }
 
     function getBrandData($name) {
@@ -55,8 +61,6 @@ class TableController extends Controller
             echo 'Error:' . curl_error($ch);
         }
         curl_close($ch);
-        $result = json_decode($result);
-        $result = $result->result;
-        return $result;
+        return json_encode(json_decode($result)->result);
     }
 }

@@ -17,4 +17,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('table', 'TableController@show');
+Route::get('tabel', function() {
+    return view('tabel');
+});
+
+Route::post('tabel', 'TableController@show') -> name('tabelus');
+
+//Route::get('tabel/{name}', 'TableController@getBrandData') -> name('tabal');
+
+Route::post('tabel/{name}', 'TableController@getBrandData') -> name('tabale');
+
