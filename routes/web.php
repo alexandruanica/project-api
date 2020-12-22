@@ -13,9 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::get('tabel', function() {
     return view('tabel');
@@ -23,7 +20,6 @@ Route::get('tabel', function() {
 
 Route::post('tabel', 'TableController@show') -> name('tabelus');
 
-//Route::get('tabel/{name}', 'TableController@getBrandData') -> name('tabal');
 
 Route::post('tabel/{name}', 'TableController@getBrandData') -> name('tabale');
 

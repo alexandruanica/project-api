@@ -30,13 +30,6 @@ class TableController extends Controller
         $result = json_decode($result);
         $brands = $result->result;
         return $brands;
-//        $brandData = [];
-//        for($i = 0; $i < count($brands); $i++)
-//            array_push($brandData,
-//            TableController::getBrandData($brands[$i]->brandname));
-//
-//
-//        return $brandData;
     }
 
     public function getBrandDataAux($name) {

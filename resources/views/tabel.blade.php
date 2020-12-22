@@ -20,6 +20,7 @@ Content loading... <br>
 <script type="text/javascript">
     console.log("started")
     let idk
+    let counter = 0
     function initData(name, tbl, bdy) {
         $.ajax({
             data: {
@@ -29,14 +30,16 @@ Content loading... <br>
             url: name,
             type: "POST",
             success: function(data){
+                counter++
                 idk = JSON.parse(data)
                 console.log(idk)
+                console.log(counter)
                 tbl.append('<tr>' + '<th>' + idk['brandname'] + '</th>' + '<th>' + idk['kpis']['total_fans']['current_period']['string'] + '</th>' + '<th>' + idk['kpis']['total_engagement']['current_period']['string'] + '</th></tr>')
             },
             error: function(data){
             },
             complete: function() {
-                if(idk['brandname'] == 'Lamborghini') {
+                if(counter == 4) {
                     bdy.text('Content loaded successfully!')
                     bdy.css("color", "green")
                 }
