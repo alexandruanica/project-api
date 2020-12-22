@@ -11,14 +11,15 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 </head>
 
-<body>
+<body class="h1">
 Content loading... <br>
-<table id="my_table" class="table table-dark">
+<table id="my_table" class="table mt-5 table-dark">
 </table>
 </body>
 
 <script type="text/javascript">
     console.log("started")
+    let idk
     function initData(name, tbl, bdy) {
         $.ajax({
             data: {
@@ -28,15 +29,16 @@ Content loading... <br>
             url: name,
             type: "POST",
             success: function(data){
-                let idk = JSON.parse(data)
+                idk = JSON.parse(data)
                 console.log(idk)
                 tbl.append('<tr>' + '<th>' + idk['brandname'] + '</th>' + '<th>' + idk['kpis']['total_fans']['current_period']['string'] + '</th>' + '<th>' + idk['kpis']['total_engagement']['current_period']['string'] + '</th></tr>')
             },
             error: function(data){
             },
             complete: function() {
-                if(tbl.length == 4) {
+                if(idk['brandname'] == 'Lamborghini') {
                     bdy.text('Content loaded successfully!')
+                    bdy.css("color", "green")
                 }
                 else {
                     bdy.text('The page is loading table elements...')
